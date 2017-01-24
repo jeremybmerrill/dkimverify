@@ -23,6 +23,6 @@ tests (which I really ought to add)
 by
 ==
 
-Jeremy B. Merrill
-The New York Times
-January 2017
+Jeremy B. Merrill  
+The New York Times  
+January 2017  
