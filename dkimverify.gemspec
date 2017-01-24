@@ -11,5 +11,5 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split($/)
   gem.require_paths = ["dkim-query"]
   gem.add_dependency "mail", "2.6.4"
-  gem.platform = "java"
+  gem.add_dependency "parslet", "~> 1.6"
 end
