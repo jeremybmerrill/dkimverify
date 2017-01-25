@@ -4,6 +4,7 @@ Gem::Specification.new do |gem|
   gem.name          = "dkimverify"
   gem.version       = '0.0.1'
   gem.authors       = ["Jeremy B. Merrill"]
+  gem.license       = "MIT"
   gem.email         = ["jeremybmerrill@gmail.com"]
   gem.description   = %q{ A pure-Ruby library for validating/verifying DKIM signatures. }
   gem.summary       = %q{ A pure-Ruby library for validating/verifying DKIM signatures. }
