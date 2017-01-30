@@ -1,4 +1,3 @@
-require 'mail'
 require 'digest'
 require 'openssl'
 require 'base64'
@@ -7,6 +6,15 @@ require_relative './dkim-query/lib/dkim/query'
 
 # TODO make this an option somehow
 $debuglog = nil # alternatively, set this to `STDERR` to log to stdout.
+require 'mail'
+
+module Mail
+    class Header
+        def first_field(name)
+            self[name].class == Array ? self[name].first : self[name]
+        end
+    end
+end
 
 module Dkim
     # what are these magic numbers?!
@@ -20,15 +28,23 @@ module Dkim
     HASHID_SHA256 = OpenSSL::ASN1::ObjectId.new('sha256')
 
     class DkimError < StandardError; end
-    class InvalidDkimSignature < DkimError; end
-    class DkimVerificationFailure < DkimError; end
+    class DkimTempFail < DkimError; end
+    class DkimPermFail < DkimError; end
+    class InvalidDkimSignature < DkimPermFail; end
+    class DkimVerificationFailure < DkimPermFail; end
 
     class Verifier
         def initialize(email_filename)
-            mail = Mail.read(email_filename)
+            mail = Mail.read(email_filename) # TODO make this `mail` not `@mail`
             @headers = mail.header
             @body = mail.body.raw_source
-            dkim_signature_str = @headers["DKIM-Signature"].value.to_s
+        end
+
+
+        def verify!
+            return false if @headers["DKIM-Signature"].nil?
+
+            dkim_signature_str = @headers.first_field("DKIM-Signature").value.to_s
             @dkim_signature = {}
             dkim_signature_str.split(/\s*;\s*/).each do |key_val| 
                 if m = key_val.match(/(\w+)\s*=\s*(.*)/)
@@ -36,10 +52,7 @@ module Dkim
                 end
             end
             validate_signature! # just checking to make sure we have all the ingredients we need to actually verify the signature
-        end
 
-
-        def verify!
             figure_out_canonicalization_methods!
             verify_body_hash!
 
@@ -68,7 +81,7 @@ module Dkim
                     elsif @dkim_signature['a'] == "rsa-sha256"
                       [Digest::SHA256, HASHID_SHA256]
                     else
-                      puts "couldn't figure out the right algorithm to use"
+                      $debuglog.puts "couldn't figure out the right algorithm to use"
                       exit 1
                     end
             
@@ -109,6 +122,7 @@ module Dkim
             # here we're getting the website's actual public key from the DNS system
             # s = dnstxt(sig['s']+"._domainkey."+sig['d']+".")
             dkim_record_from_dns = DKIM::Query::Domain.query(@dkim_signature['d'], {:selectors => [@dkim_signature['s']]}).keys[@dkim_signature['s']]
+            raise DkimTempFail.new("couldn't get public key from DNS system for #{@dkim_signature['s']}/#{@dkim_signature['d']}") if dkim_record_from_dns.nil? || dkim_record_from_dns.class == DKIM::Query::MalformedKey
             x = OpenSSL::ASN1.decode(Base64.decode64(dkim_record_from_dns.public_key.to_s))
             publickey = x.value[1].value
         end
@@ -119,18 +133,19 @@ module Dkim
             header_fields_to_include = @dkim_signature['h'].split(/\s*:\s*/)
             $debuglog.puts "header_fields_to_include: #{header_fields_to_include}" unless $debuglog.nil?
             canonicalized_headers = []
-            canonicalized_headers = Dkim.canonicalize_headers(header_fields_to_include.map{|header_name| [header_name, @headers[header_name].value] }, @how_to_canonicalize_headers)
-            # def _remove(s, t):
-            #     i = s.find(t)
-            #     assert i >= 0
-            #     return s[:i] + s[i+len(t):]
+            header_fields_to_include_with_values = header_fields_to_include.map do |header_name|                                
+                [header_name, @headers.first_field(header_name).instance_eval { unfold(split(@raw_value)[1]) } ] 
+                # .value and .instance_eval { unfold(split(@raw_value)[1]) } return subtly different values
+                # if the value of the Date header is a date with a single-digit day.
+                # see https://github.com/mikel/mail/issues/1075
+                # incidentally, .instance_variable_get("@value") gives a third subtly different value in a way that I don't understand.
+            end
+            canonicalized_headers = Dkim.canonicalize_headers(header_fields_to_include_with_values, @how_to_canonicalize_headers)
 
-
-            # The call to _remove() assumes that the signature b= only appears once in the signature header
             canonicalized_headers += Dkim.canonicalize_headers([
                 [
-                    @headers["DKIM-Signature"].name.to_s, 
-                    @headers["DKIM-Signature"].value.to_s.split(@dkim_signature['b']).join('')
+                    @headers.first_field("DKIM-Signature").name.to_s, 
+                    @headers.first_field("DKIM-Signature").value.to_s.split(@dkim_signature['b']).join('')
                 ]
             ], @how_to_canonicalize_headers).map{|x| [x[0], x[1].rstrip()] }
 
@@ -144,8 +159,7 @@ module Dkim
                     elsif @dkim_signature['a'] == "rsa-sha256"
                       Digest::SHA256
                     else
-                      puts "couldn't figure out the right algorithm to use"
-                      exit 1
+                      raise InvalidDkimSignature.new "couldn't figure out the right algorithm to use"
                     end.new
             headers_to_sign.each do |header|
                 hasher.update(header[0])
@@ -153,7 +167,7 @@ module Dkim
                 hasher.update(header[1])
             end
             digest = hasher.digest
-            $debuglog.puts "verify digest: #{  Base64.encode64(digest)  }" unless $debuglog.nil?
+            $debuglog.puts "verify digest: #{  digest.each_byte.map { |b| b.to_s(16) }.join ' ' }" unless $debuglog.nil?
             digest
         end
         
@@ -247,10 +261,10 @@ end
 if __FILE__ == $0
     emlfn = ARGV[0] || "/Users/204434/code/stevedore-uploader-internal/inputs/podesta-part36/59250.eml"
     begin
-        Dkim::Verifier.new(emlfn).verify!
-    rescue Dkim::DkimError
+        ret = Dkim::Verifier.new(emlfn).verify!
+    rescue Dkim::DkimPermFail
         puts "uh oh, something went wrong, the signature did not verify correctly"
         exit 1
     end
-    puts "signature verified correctly"
+    puts ret ? "DKIM signature verified correctly" : "DKIM signature absent"
 end

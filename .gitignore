@@ -1,4 +1,5 @@
 pydkim
+ruby_failures_python_successes.txt
 *.gem
 Gemfile.lock # becuase this is a gem and apparently you're not supposed to check that in for gems
 Gemfile.lock
