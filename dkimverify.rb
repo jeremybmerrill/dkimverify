@@ -4,7 +4,7 @@ require 'base64'
 require 'resolv'
 
 # TODO make this an option somehow
-$debuglog = STDERR # nil # alternatively, set this to `STDERR` to log to stdout.
+$debuglog = nil #STDERR # nil # alternatively, set this to `STDERR` to log to stdout.
 require 'mail'
 
 module Mail
@@ -128,8 +128,9 @@ module Dkim
             # s = dnstxt(sig['s']+"._domainkey."+sig['d']+".")
             # dkim_record_from_dns = DKIM::Query::Domain.query(@dkim_signature['d'], {:selectors => [@dkim_signature['s']]}).keys[@dkim_signature['s']]
             txt = Resolv::DNS.open{|dns| dns.getresources("#{@dkim_signature['s']}._domainkey.#{@dkim_signature['d']}", Resolv::DNS::Resource::IN::TXT).map(&:data) }
+            raise DkimTempFail.new("couldn't get public key from DNS system for #{@dkim_signature['s']}/#{@dkim_signature['d']}") if txt.first.nil?
             parsed_txt = Dkim.parse_header_kv(txt.first)
-            raise DkimTempFail.new("couldn't get public key from DNS system for #{@dkim_signature['s']}/#{@dkim_signature['d']}") if txt.first.nil? || !parsed_txt.keys.include?("p")
+            raise DkimTempFail.new("couldn't get public key from DNS system for #{@dkim_signature['s']}/#{@dkim_signature['d']}") if !parsed_txt.keys.include?("p")
             publickey_asn1 = OpenSSL::ASN1.decode(Base64.decode64(parsed_txt["p"]))
             publickey = publickey_asn1.value[1].value
         end
@@ -142,7 +143,7 @@ module Dkim
             canonicalized_headers = []
             header_fields_to_include_with_values = header_fields_to_include.map do |header_name|                                
                 puts @headers.first_field(header_name).inspect
-                [header_name, @headers.first_field(header_name).instance_variable_get("@raw_value").split(":")[1..-1].join(":") ] 
+                [header_name, (hstr = @headers.first_field(header_name).instance_variable_get("@raw_value")).nil? ? '' : hstr.split(":")[1..-1].join(":") ] 
                 # .value and .instance_eval { unfold(split(@raw_value)[1]) } return subtly different values
                 # if the value of the Date header is a date with a single-digit day.
                 # see https://github.com/mikel/mail/issues/1075
@@ -195,7 +196,11 @@ module Dkim
         end
 
         def decrypted_header_hash
-            decrypted_header_hash_bytes = OpenSSL::PKey::RSA.new(public_key).public_decrypt(Base64.decode64(@dkim_signature['b']))
+            begin
+                decrypted_header_hash_bytes = OpenSSL::PKey::RSA.new(public_key).public_decrypt(Base64.decode64(@dkim_signature['b']))
+            rescue OpenSSL::PKey::RSAError
+                raise DkimPermFail.new "couldn't decrypt header hash with public key"
+            end
             ret = Base64.encode64(decrypted_header_hash_bytes).gsub(/\s+/, '')
             $debuglog.puts "decrypted_header_hash: #{ret}" unless $debuglog.nil?
             ret
