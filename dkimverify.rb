@@ -1,11 +1,10 @@
 require 'digest'
 require 'openssl'
 require 'base64'
-require_relative './dkim-query/lib/dkim/query'
-
+require 'resolv'
 
 # TODO make this an option somehow
-$debuglog = nil # alternatively, set this to `STDERR` to log to stdout.
+$debuglog = STDERR # nil # alternatively, set this to `STDERR` to log to stdout.
 require 'mail'
 
 module Mail
@@ -33,6 +32,17 @@ module Dkim
     class InvalidDkimSignature < DkimPermFail; end
     class DkimVerificationFailure < DkimPermFail; end
 
+    #TODO: what is this kind of key-value string even called?
+    def self.parse_header_kv(input_str)
+        parsed = {}
+        input_str.split(/\s*;\s*/).each do |key_val| 
+            if m = key_val.match(/(\w+)\s*=\s*(.*)/)
+                parsed[m[1]] = m[2]
+            end
+        end
+        parsed
+    end
+
     class Verifier
         def initialize(email_filename)
             mail = Mail.read(email_filename) # TODO make this `mail` not `@mail`
@@ -45,12 +55,7 @@ module Dkim
             return false if @headers["DKIM-Signature"].nil?
 
             dkim_signature_str = @headers.first_field("DKIM-Signature").value.to_s
-            @dkim_signature = {}
-            dkim_signature_str.split(/\s*;\s*/).each do |key_val| 
-                if m = key_val.match(/(\w+)\s*=\s*(.*)/)
-                    @dkim_signature[m[1]] = m[2]
-                end
-            end
+            @dkim_signature = Dkim.parse_header_kv(dkim_signature_str)
             validate_signature! # just checking to make sure we have all the ingredients we need to actually verify the signature
 
             figure_out_canonicalization_methods!
@@ -121,10 +126,12 @@ module Dkim
         def public_key
             # here we're getting the website's actual public key from the DNS system
             # s = dnstxt(sig['s']+"._domainkey."+sig['d']+".")
-            dkim_record_from_dns = DKIM::Query::Domain.query(@dkim_signature['d'], {:selectors => [@dkim_signature['s']]}).keys[@dkim_signature['s']]
-            raise DkimTempFail.new("couldn't get public key from DNS system for #{@dkim_signature['s']}/#{@dkim_signature['d']}") if dkim_record_from_dns.nil? || dkim_record_from_dns.class == DKIM::Query::MalformedKey
-            x = OpenSSL::ASN1.decode(Base64.decode64(dkim_record_from_dns.public_key.to_s))
-            publickey = x.value[1].value
+            # dkim_record_from_dns = DKIM::Query::Domain.query(@dkim_signature['d'], {:selectors => [@dkim_signature['s']]}).keys[@dkim_signature['s']]
+            txt = Resolv::DNS.open{|dns| dns.getresources("#{@dkim_signature['s']}._domainkey.#{@dkim_signature['d']}", Resolv::DNS::Resource::IN::TXT).map(&:data) }
+            parsed_txt = Dkim.parse_header_kv(txt.first)
+            raise DkimTempFail.new("couldn't get public key from DNS system for #{@dkim_signature['s']}/#{@dkim_signature['d']}") if txt.first.nil? || !parsed_txt.keys.include?("p")
+            publickey_asn1 = OpenSSL::ASN1.decode(Base64.decode64(parsed_txt["p"]))
+            publickey = publickey_asn1.value[1].value
         end
 
         def headers_to_sign
@@ -134,13 +141,15 @@ module Dkim
             $debuglog.puts "header_fields_to_include: #{header_fields_to_include}" unless $debuglog.nil?
             canonicalized_headers = []
             header_fields_to_include_with_values = header_fields_to_include.map do |header_name|                                
-                [header_name, @headers.first_field(header_name).instance_eval { unfold(split(@raw_value)[1]) } ] 
+                puts @headers.first_field(header_name).inspect
+                [header_name, @headers.first_field(header_name).instance_variable_get("@raw_value").split(":")[1..-1].join(":") ] 
                 # .value and .instance_eval { unfold(split(@raw_value)[1]) } return subtly different values
                 # if the value of the Date header is a date with a single-digit day.
                 # see https://github.com/mikel/mail/issues/1075
                 # incidentally, .instance_variable_get("@value") gives a third subtly different value in a way that I don't understand.
             end
             canonicalized_headers = Dkim.canonicalize_headers(header_fields_to_include_with_values, @how_to_canonicalize_headers)
+            puts @headers.first_field("DKIM-Signature").inspect
 
             canonicalized_headers += Dkim.canonicalize_headers([
                 [
@@ -180,7 +189,6 @@ module Dkim
                         ]),
                         OpenSSL::ASN1::OctetString.new(headers_digest),
                 ])
-            $debuglog.puts "dinfo: #{ dinfo.to_der  }" unless $debuglog.nil?
             headers_der = Base64.encode64(dinfo.to_der).gsub(/\s+/, '')
             $debuglog.puts "headers_hash: #{headers_der}" unless $debuglog.nil?
             headers_der
@@ -195,34 +203,34 @@ module Dkim
 
         def validate_signature!
             # version: only version 1 is defined
-            raise InvalidDkimSignature("DKIM signature is missing required tag v=") unless @dkim_signature.include?('v')
-            raise InvalidDkimSignature("DKIM signature v= value is invalid (got \"#{@dkim_signature['v']}\"; expected \"1\")") unless @dkim_signature['v'] == "1"
+            raise InvalidDkimSignature.new("DKIM signature is missing required tag v=") unless @dkim_signature.include?('v')
+            raise InvalidDkimSignature.new("DKIM signature v= value is invalid (got \"#{@dkim_signature['v']}\"; expected \"1\")") unless @dkim_signature['v'] == "1"
             
             # encryption algorithm
-            raise InvalidDkimSignature("DKIM signature is missing required tag a=") unless @dkim_signature.include?('a')
+            raise InvalidDkimSignature.new("DKIM signature is missing required tag a=") unless @dkim_signature.include?('a')
             
             # header hash
-            raise InvalidDkimSignature("DKIM signature is missing required tag b=") unless @dkim_signature.include?('b')
-            raise InvalidDkimSignature("DKIM signature b= value is not valid base64") unless @dkim_signature['b'].match(/[\s0-9A-Za-z+\/]+=*$/)
-            raise InvalidDkimSignature("DKIM signature is missing required tag h=") unless @dkim_signature.include?('h')
+            raise InvalidDkimSignature.new("DKIM signature is missing required tag b=") unless @dkim_signature.include?('b')
+            raise InvalidDkimSignature.new("DKIM signature b= value is not valid base64") unless @dkim_signature['b'].match(/[\s0-9A-Za-z+\/]+=*$/)
+            raise InvalidDkimSignature.new("DKIM signature is missing required tag h=") unless @dkim_signature.include?('h')
             
             # body hash (not directly encrypted)
-            raise InvalidDkimSignature("DKIM signature is missing required tag bh=") unless @dkim_signature.include?('bh')
-            raise InvalidDkimSignature("DKIM signature bh= value is not valid base64") unless @dkim_signature['bh'].match(/[\s0-9A-Za-z+\/]+=*$/)
+            raise InvalidDkimSignature.new("DKIM signature is missing required tag bh=") unless @dkim_signature.include?('bh')
+            raise InvalidDkimSignature.new("DKIM signature bh= value is not valid base64") unless @dkim_signature['bh'].match(/[\s0-9A-Za-z+\/]+=*$/)
             
             # domain selector
-            raise InvalidDkimSignature("DKIM signature is missing required tag d=") unless @dkim_signature.include?('d')
-            raise InvalidDkimSignature("DKIM signature is missing required tag s=") unless @dkim_signature.include?('s')
+            raise InvalidDkimSignature.new("DKIM signature is missing required tag d=") unless @dkim_signature.include?('d')
+            raise InvalidDkimSignature.new("DKIM signature is missing required tag s=") unless @dkim_signature.include?('s')
             
             # these are expiration dates, which are not checked above.
-            raise InvalidDkimSignature("DKIM signature t= value is not a valid decimal integer") unless @dkim_signature['t'].nil? || @dkim_signature['t'].match(/\d+$/)
-            raise InvalidDkimSignature("DKIM signature x= value is not a valid decimal integer") unless @dkim_signature['x'].nil? || @dkim_signature['x'].match(/\d+$/)
-            raise InvalidDkimSignature("DKIM signature x= value is less than t= (and must be greater than or equal to t=). (x=#{@dkim_signature['x']}, t=#{@dkim_signature['t']}) ") unless @dkim_signature['x'].nil? || @dkim_signature['x'].to_i >= @dkim_signature['t'].to_i
+            raise InvalidDkimSignature.new("DKIM signature t= value is not a valid decimal integer") unless @dkim_signature['t'].nil? || @dkim_signature['t'].match(/\d+$/)
+            raise InvalidDkimSignature.new("DKIM signature x= value is not a valid decimal integer") unless @dkim_signature['x'].nil? || @dkim_signature['x'].match(/\d+$/)
+            raise InvalidDkimSignature.new("DKIM signature x= value is less than t= (and must be greater than or equal to t=). (x=#{@dkim_signature['x']}, t=#{@dkim_signature['t']}) ") unless @dkim_signature['x'].nil? || @dkim_signature['x'].to_i >= @dkim_signature['t'].to_i
 
             # other unimplemented stuff
-            raise InvalidDkimSignature("DKIM signature i= domain is not a subdomain of d= (i=#{@dkim_signature[i]} d=#{@dkim_signature[d]})") if @dkim_signature['i'] && !(@dkim_signature['i'].end_with?(@dkim_signature['d']) || ["@", ".", "@."].include?(@dkim_signature['i'][-@dkim_signature['d'].size-1]))
-            raise InvalidDkimSignature("DKIM signature l= value is invalid") if @dkim_signature['l'] && !@dkim_signature['l'].match(/\d{,76}$/)
-            raise InvalidDkimSignature("DKIM signature q= value is invalid (got \"#{@dkim_signature['q']}\"; expected \"dns/txt\")") if @dkim_signature['q'] && @dkim_signature['q'] != "dns/txt"
+            raise InvalidDkimSignature.new("DKIM signature i= domain is not a subdomain of d= (i=#{@dkim_signature[i]} d=#{@dkim_signature[d]})") if @dkim_signature['i'] && !(@dkim_signature['i'].end_with?(@dkim_signature['d']) || ["@", ".", "@."].include?(@dkim_signature['i'][-@dkim_signature['d'].size-1]))
+            raise InvalidDkimSignature.new("DKIM signature l= value is invalid") if @dkim_signature['l'] && !@dkim_signature['l'].match(/\d{,76}$/)
+            raise InvalidDkimSignature.new("DKIM signature q= value is invalid (got \"#{@dkim_signature['q']}\"; expected \"dns/txt\")") if @dkim_signature['q'] && @dkim_signature['q'] != "dns/txt"
         end
     end
 
@@ -245,7 +253,7 @@ module Dkim
       if how == "simple"  
         $debuglog.puts "canonicalizing body with 'simple'" unless $debuglog.nil?
         # Ignore all empty lines at the end of the message body.
-        body.gsub(/(\r\n)*$/, "\r\n")
+        body.gsub(/(\r\n)+\Z/, "\r\n")
       elsif how == "relaxed"
         $debuglog.puts "canonicalizing body with 'relaxed'" unless $debuglog.nil?
         
