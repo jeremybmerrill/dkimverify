@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name          = "dkimverify"
-  gem.version       = '0.0.3'
+  gem.version       = '0.0.5'
   gem.authors       = ["Jeremy B. Merrill"]
   gem.license       = "MIT"
   gem.email         = ["jeremybmerrill@gmail.com"]

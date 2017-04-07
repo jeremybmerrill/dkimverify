@@ -4,13 +4,74 @@ require 'base64'
 require 'resolv'
 
 # TODO make this an option somehow
-$debuglog = nil #STDERR # nil # alternatively, set this to `STDERR` to log to stdout.
-require 'mail'
+$debuglog = STDERR # nil # alternatively, set this to `STDERR` to log to stdout.
 
 module Mail
-    class Header
-        def first_field(name)
-            self[name].class == Array ? self[name].first : self[name]
+    class MessageFormatError < StandardError; end
+
+    class HeaderHash < Hash
+        def get(header_name)
+            self[get_name(header_name)]
+        end
+
+        def get_name(header_name)
+            keys.find{|k| k.downcase == header_name.downcase }
+        end
+    end
+
+    class Message
+        def initialize(msg)
+            @raw_message = msg
+            @raw_headers = []
+            @body = nil 
+            @parsed = false
+        end
+
+        def headers
+            self.parse! unless @parsed
+            @headers
+        end
+
+        def body
+            self.parse! unless @parsed
+            @body
+        end
+
+        def parse!
+            """Parse a message in RFC822 format.
+
+            @param message: The message in RFC822 format. Either CRLF or LF is an accepted line separator.
+
+            @return Returns a tuple of (headers, body) where headers is a list of (name, value) pairs.
+            The body is a CRLF-separated string.
+
+            """
+
+            lines = @raw_message.split(/\r?\n/)
+            i = 0
+            while i < lines.size
+                if lines[i].size == 0
+                    # End of headers, return what we have plus the body, excluding the blank line.
+                    i += 1
+                    break
+                end
+                if /[\x09\x20]/.match lines[i][0]
+                    @raw_headers[-1][1] += lines[i]+"\r\n"
+                else
+                    m = /([\x21-\x7e]+?):/.match lines[i]
+                    if m
+                        @raw_headers << [m[1], lines[i][m.end(0)..-1]+"\r\n"]
+                    elsif lines[i].start_with?("From ")
+                        
+                    else
+                        raise MessageFormatError.new("Unexpected characters in RFC822 header: #{lines[i]}")
+                    end
+                end
+                i += 1
+            end
+            @body = lines[i..-1].join("\r\n") + "\r\n"
+            @headers = HeaderHash[*@raw_headers.reverse.flatten(1)]
+            puts "Headers: " + @headers.inspect
         end
     end
 end
@@ -35,8 +96,8 @@ module Dkim
     #TODO: what is this kind of key-value string even called?
     def self.parse_header_kv(input_str)
         parsed = {}
-        input_str.split(/\s*;\s*/).each do |key_val| 
-            if m = key_val.match(/(\w+)\s*=\s*(.*)/)
+        input_str.split(/\s*;\s*/m).each do |key_val| 
+            if m = key_val.match(/(\w+)\s*=\s*(.*)/m)
                 parsed[m[1]] = m[2]
             end
         end
@@ -45,17 +106,18 @@ module Dkim
 
     class Verifier
         def initialize(email_filename)
-            mail = Mail.read(email_filename) # TODO make this `mail` not `@mail`
-            @headers = mail.header
-            @body = mail.body.raw_source
+            mail = Mail::Message.new(open(email_filename, 'r'){|f| f.read }) # TODO make this `mail` not `@mail`
+            @headers = mail.headers
+            @body = mail.body
         end
 
 
         def verify!
-            return false if @headers["DKIM-Signature"].nil?
+            return false if @headers.get("DKIM-Signature").nil?
 
-            dkim_signature_str = @headers.first_field("DKIM-Signature").value.to_s
+            dkim_signature_str = @headers.get("DKIM-Signature").to_s
             @dkim_signature = Dkim.parse_header_kv(dkim_signature_str)
+            puts "dkim sig: #{@dkim_signature}"
             validate_signature! # just checking to make sure we have all the ingredients we need to actually verify the signature
 
             figure_out_canonicalization_methods!
@@ -142,20 +204,18 @@ module Dkim
             $debuglog.puts "header_fields_to_include: #{header_fields_to_include}" unless $debuglog.nil?
             canonicalized_headers = []
             header_fields_to_include_with_values = header_fields_to_include.map do |header_name|                                
-                puts @headers.first_field(header_name).inspect
-                [header_name, (hstr = @headers.first_field(header_name).instance_variable_get("@raw_value")).nil? ? '' : hstr.split(":")[1..-1].join(":") ] 
-                # .value and .instance_eval { unfold(split(@raw_value)[1]) } return subtly different values
-                # if the value of the Date header is a date with a single-digit day.
-                # see https://github.com/mikel/mail/issues/1075
-                # incidentally, .instance_variable_get("@value") gives a third subtly different value in a way that I don't understand.
+                puts @headers.get(header_name).inspect
+                header_val = (hstr = @headers.get(header_name)).nil? ? '' : hstr #.split(":")[1..-1].join(":")
+                puts "header_val: #{header_val}"
+                [header_name, header_val ] 
             end
+            puts header_fields_to_include_with_values.inspect
             canonicalized_headers = Dkim.canonicalize_headers(header_fields_to_include_with_values, @how_to_canonicalize_headers)
-            puts @headers.first_field("DKIM-Signature").inspect
 
             canonicalized_headers += Dkim.canonicalize_headers([
                 [
-                    @headers.first_field("DKIM-Signature").name.to_s, 
-                    @headers.first_field("DKIM-Signature").value.to_s.split(@dkim_signature['b']).join('')
+                    @headers.get_name("DKIM-Signature").to_s, 
+                    @headers.get("DKIM-Signature").to_s.split(@dkim_signature['b']).join('')
                 ]
             ], @how_to_canonicalize_headers).map{|x| [x[0], x[1].rstrip()] }
 
