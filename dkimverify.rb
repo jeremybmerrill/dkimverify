@@ -4,7 +4,7 @@ require 'base64'
 require 'resolv'
 
 # TODO make this an option somehow
-$debuglog = STDERR # nil # alternatively, set this to `STDERR` to log to stdout.
+$debuglog = nil #STDERR # nil # alternatively, set this to `STDERR` to log to stdout.
 
 module Mail
     class MessageFormatError < StandardError; end
@@ -71,7 +71,6 @@ module Mail
             end
             @body = lines[i..-1].join("\r\n") + "\r\n"
             @headers = HeaderHash[*@raw_headers.reverse.flatten(1)]
-            puts "Headers: " + @headers.inspect
         end
     end
 end
@@ -105,8 +104,8 @@ module Dkim
     end
 
     class Verifier
-        def initialize(email_filename)
-            mail = Mail::Message.new(open(email_filename, 'r'){|f| f.read }) # TODO make this `mail` not `@mail`
+        def initialize(email_stringy_thing)
+            mail = Mail::Message.new(email_stringy_thing)
             @headers = mail.headers
             @body = mail.body
         end
@@ -117,7 +116,6 @@ module Dkim
 
             dkim_signature_str = @headers.get("DKIM-Signature").to_s
             @dkim_signature = Dkim.parse_header_kv(dkim_signature_str)
-            puts "dkim sig: #{@dkim_signature}"
             validate_signature! # just checking to make sure we have all the ingredients we need to actually verify the signature
 
             figure_out_canonicalization_methods!
@@ -172,7 +170,7 @@ module Dkim
         def figure_out_canonicalization_methods!
             c_match = @dkim_signature['c'].match(/(\w+)(?:\/(\w+))?$/)
             if not c_match
-              puts "can't figure out canonicalization ('c=')"
+              $debuglog.puts "can't figure out canonicalization ('c=')"
               return false
             end
             @how_to_canonicalize_headers = c_match[1]
@@ -204,12 +202,9 @@ module Dkim
             $debuglog.puts "header_fields_to_include: #{header_fields_to_include}" unless $debuglog.nil?
             canonicalized_headers = []
             header_fields_to_include_with_values = header_fields_to_include.map do |header_name|                                
-                puts @headers.get(header_name).inspect
                 header_val = (hstr = @headers.get(header_name)).nil? ? '' : hstr #.split(":")[1..-1].join(":")
-                puts "header_val: #{header_val}"
                 [header_name, header_val ] 
             end
-            puts header_fields_to_include_with_values.inspect
             canonicalized_headers = Dkim.canonicalize_headers(header_fields_to_include_with_values, @how_to_canonicalize_headers)
 
             canonicalized_headers += Dkim.canonicalize_headers([
@@ -332,12 +327,12 @@ module Dkim
 end
 
 if __FILE__ == $0
-    emlfn = ARGV[0] || "/Users/204434/code/stevedore-uploader-internal/inputs/podesta-part36/59250.eml"
+    eml = ARGF.read
     begin
-        ret = Dkim::Verifier.new(emlfn).verify!
+        ret = Dkim::Verifier.new(eml).verify!
     rescue Dkim::DkimPermFail
-        puts "uh oh, something went wrong, the signature did not verify correctly"
+        STDERR.puts "uh oh, something went wrong, the signature did not verify correctly"
         exit 1
     end
-    puts ret ? "DKIM signature verified correctly" : "DKIM signature absent"
+    STDERR.puts ret ? "DKIM signature verified correctly" : "DKIM signature absent"
 end
