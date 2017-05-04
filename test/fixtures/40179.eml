@@ -1,0 +1,433 @@
+Delivered-To: john.podesta@gmail.com
+Received: by 10.25.30.9 with SMTP id e9csp110149lfe;
+        Fri, 5 Sep 2014 13:42:01 -0700 (PDT)
+X-Received: by 10.66.174.72 with SMTP id bq8mr25647058pac.88.1409949720871;
+        Fri, 05 Sep 2014 13:42:00 -0700 (PDT)
+Return-Path: <podesta@law.georgetown.edu>
+Received: from mail1.bemta7.messagelabs.com (mail1.bemta7.messagelabs.com. [216.82.254.103])
+        by mx.google.com with ESMTP id rl4si5836398pab.180.2014.09.05.13.41.59
+        for <john.podesta@gmail.com>;
+        Fri, 05 Sep 2014 13:42:00 -0700 (PDT)
+Received-SPF: none (google.com: podesta@law.georgetown.edu does not designate permitted sender hosts) client-ip=216.82.254.103;
+Authentication-Results: mx.google.com;
+       spf=neutral (google.com: podesta@law.georgetown.edu does not designate permitted sender hosts) smtp.mail=podesta@law.georgetown.edu;
+       dkim=fail header.i=@mail.salsalabs.net
+Return-Path: <podesta@law.georgetown.edu>
+Received: from [216.82.254.83:4095] by server-7.bemta-7.messagelabs.com id DD/43-02060-5102A045; Fri, 05 Sep 2014 20:41:57 +0000
+X-Env-Sender: podesta@law.georgetown.edu
+X-Msg-Ref: server-3.tower-197.messagelabs.com!1409949715!6552070!1
+X-Originating-IP: [141.161.191.74]
+X-StarScan-Received:
+X-StarScan-Version: 6.11.3; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 26325 invoked from network); 5 Sep 2014 20:41:55 -0000
+Received: from unknown (HELO LAW-CAS1.law.georgetown.edu) (141.161.191.74)
+  by server-3.tower-197.messagelabs.com with AES128-SHA encrypted SMTP; 5 Sep 2014 20:41:55 -0000
+Resent-From: <podesta@law.georgetown.edu>
+Received: from mail6.bemta12.messagelabs.com (216.82.250.247) by
+ LAW-CAS1.law.georgetown.edu (141.161.191.74) with Microsoft SMTP Server id
+ 14.3.181.6; Fri, 5 Sep 2014 16:41:55 -0400
+Received: from [216.82.249.179:2561] by server-16.bemta-12.messagelabs.com id
+ C7/E3-27191-2102A045; Fri, 05 Sep 2014 20:41:54 +0000
+X-Env-Sender: 2238124726-1304868-org2-org2DB@bounces.salsalabs.net
+X-Msg-Ref: server-4.tower-44.messagelabs.com!1409949710!632092!1
+X-Originating-IP: [69.174.83.167]
+X-SpamReason: No, hits=0.5 required=7.0 tests=sa_preprocessor: 
+  QmFkIElQOiA2OS4xNzQuODMuMTY3ID0+IDI4ODYw\n,sa_preprocessor: 
+  QmFkIElQOiA2OS4xNzQuODMuMTY3ID0+IDI4ODYw\n,BODY_RANDOM_LONG,HTML_MESSAGE
+X-StarScan-Received:
+X-StarScan-Version: 6.11.3; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 30064 invoked from network); 5 Sep 2014 20:41:50 -0000
+Received: from m167.salsalabs.net (HELO m167.salsalabs.net) (69.174.83.167)
+  by server-4.tower-44.messagelabs.com with SMTP; 5 Sep 2014 20:41:50 -0000
+DKIM-Signature: v=1; a=rsa-sha1; d=mail.salsalabs.net; s=s1024-dkim; c=relaxed/relaxed;
+	q=dns/txt; i=@mail.salsalabs.net; t=1409949710;
+	h=From:Subject:Date:To:MIME-Version:Content-Type;
+	bh=LnQVG28DtP5dM87VLEKckPTJu2c=;
+	b=Qso2U+D/SJ3pxECmNTYMLypw/iHHhoJyrjf7a6UYXwGC/BFoEZ5xPx0U5HkU5ZJp
+	MSYeT1UGcoXdn6v+afjR85Uvpr7zIFmscNp5TpNAmCQtr+H3yR2OJLvUkIFyKm1E
+	B8zx7eTRP4B3SLhMr8Ztm5uGhMypWhwixyoKUksA5Qw=;
+Received: from [10.174.83.200] ([10.174.83.200:50526]
+ helo=dispatch9.salsalabs.net)	by mailer1.salsalabs.net (envelope-from
+ <2238124726-1304868-org2-org2DB@bounces.salsalabs.net>)	(ecelerity
+ 3.5.0.35861 r(Momo-dev:tip)) with ESMTP	id 77/5A-21703-E002A045; Fri, 05 Sep
+ 2014 16:41:50 -0400
+Date: Fri, 5 Sep 2014 16:41:50 -0400
+From: t r u t h o u t <messenger@truthout.org>
+Sender: <messenger=truthout.org@mail.salsalabs.net>
+Reply-To: <messenger@truthout.org>
+To: podesta@law.georgetown.edu
+Message-ID: <2238124726.636091007@org2.org2DB.reply.salsalabs.com>
+Subject: Noam Chomsky | Owl of Minerva's View: ISIS and Our Times
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_Part_11371974_1910476892.1409949710497"
+Envelope-From: <2238124726-1304868-org2-org2DB@bounces.salsalabs.net>
+List-Unsubscribe: <http://org2.salsalabs.com/o/6694/p/salsa/supporter/unsubscribe/public/index.sjs?Email=podesta@law.georgetown.edu&email_blast_KEY=1304868>
+X_email_KEY: 2238124726
+X-campaignid: salsaorg26694-1304868
+
+------=_Part_11371974_1910476892.1409949710497
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+t r u t h o u t | 09.05
+
+Noam Chomsky | Owl of Minerva's View: ISIS and Our Times
+http://truth-out.org/opinion/item/26000-owl-of-minervas-view-isis-and-our-t=
+imes
+Noam Chomsky, Truthout: Human civilization began by the Tigris and Euphrate=
+s rivers. It is perhaps fitting that we have plunged the cradle of civiliza=
+tion into disaster, just as we may have ensured the end of the human civili=
+zation by warming our climate to the point of no return.
+
+William Rivers Pitt | Within Reach of Your Arm
+http://www.truth-out.org/opinion/item/26002-within-reach-of-your-arm
+William Rivers Pitt, Truthout: "All I have, all you have, all we have, is t=
+he power to do good and right within reach of our arm. I can't defeat ISIS,=
+ or suck the oil out of the Gulf. But I can do the best I can within reach =
+of my arm, one reach at a time."
+
+Marjorie Cohn | US Slammed for Failure to Fulfill Legal Obligation to Elimi=
+nate All Forms of Race Discrimination
+http://truth-out.org/news/item/25990-us-slammed-for-failure-to-fulfill-lega=
+l-obligation-to-eliminate-all-forms-of-race-discrimination
+Marjorie Cohn, Truthout: A UN Committee has published a scathing denunciati=
+on of US failures to honor its treaty commitments to the International Conv=
+ention on the Elimination of All Forms of Racial Discrimination.
+
+"Illegal Immigration" Is a Policy Used to Exclude and Exploit
+http://www.truth-out.org/news/item/25996-illegal-immigration-is-a-policy-us=
+ed-to-exclude-and-exploit
+Aviva Chomsky, Truthout: The author explores how prejudice and the exploita=
+tion of inexpensive labor increasingly shaped US immigration policy in an e=
+xcerpt from her book, "Undocumented: How Immigration Became Illegal."
+
+Manufactured Emergency: The Neoliberal Assault on Michigan
+http://www.truth-out.org/news/item/26004-manufactured-emergency-the-neolibe=
+ral-assault-on-michigan
+Jane Slaughter, Political Research Associates: Those who want to privatize =
+public services and destroy unions have made some successful incursions int=
+o the once union-friendly state. Whether Michiganders can mount an effectiv=
+e resistance remains to be seen.
+
+Dean Baker | Pace of Job Growth Slows Further in August
+http://truth-out.org/news/item/26008-job-growth-slows-further-in-august
+Dean Baker, Center for Economic and Policy Research: The pace of growth slo=
+wed sharply to 142,000 jobs in August, which brings the average rate of job=
+ growth over the last three months to 207,000. Employment is now performing=
+ far worse than in prior recoveries.
+
+Is There Still Hope for Peace in Ukraine?
+http://truth-out.org/opinion/item/26017-is-there-still-hope-for-peace-in-uk=
+raine
+Patrick Boylan, Pressenza: The Ukrainian government relentlessly goes on bo=
+mbing residential areas in the eastern regions. The separatists are in a si=
+ege; to break it, they have launched a bloody counteroffensive. Yet, in spi=
+te of it all, a glimmer of hope for peace has appeared.
+
+The Price of Blackness: From Ferguson to Bed-Stuy
+http://truth-out.org/opinion/item/26015-the-price-of-blackness-from-ferguso=
+n-to-bed-stuy
+Darnell L. Moore, The Feminist Wire: If we are to ensure the end of state-s=
+anctioned violence against black people, we must be ready to think through =
+and redress the socioeconomic and class underpinnings of anti-blackness and=
+ white racial supremacy.
+
+What "Battlestar Galactica" Can Teach Us About the Militarization of Police
+http://www.truth-out.org/opinion/item/26010-what-battlestar-galactica-can-t=
+each-us-about-the-militarization-of-police
+Christopher Zumski Finke, YES! Magazine: "There's a reason you separate the=
+ military and the police. One fights the enemy of the state, the other serv=
+es and protects the people. When the military becomes both, then the enemie=
+s of the state tend to become the people," says the "Battlestar Galactica" =
+character Commander William Adama.
+
+Global Expansion of Fossil Fuel Transport, Drilling Underway as UN Climate =
+Summit Approaches
+http://truth-out.org/news/item/26014-global-expansion-of-fossil-fuel-transp=
+ort-drilling-underway-as-un-climate-summit-approaches
+Sharmini Peries, The Real News Network: Environmental and humanities schola=
+r and activist Subhankar Banerjee says we shouldn't expect much from global=
+ leaders gathering in New York City for the 2014 climate summit - most of t=
+heir countries work with the fossil fuel industry.
+
+If a Senator Can't Report Sexual Harassment Without Backlash, Who Can?
+http://www.truth-out.org/news/item/26013-if-a-senator-cant-report-sexual-ha=
+rassment-without-backlash-who-can
+Crystal Shepeard, Care2: Women have to walk a tricky tightrope of not wanti=
+ng to seem too "sensitive," while at the same time standing up for themselv=
+es in the face of discrimination. Sen. Gillibrand's experience shows how di=
+fficult it can be for anyone to navigate the workplace without inviting neg=
+ative consequences.
+
+A Victory Over Justice System's Failure: Wrongly Convicted Brothers Freed A=
+fter 31 Years in Prison
+http://truth-out.org/news/item/26016-a-victory-over-justice-systems-failure=
+-wrongly-convicted-brothers-freed-after-31-years-in-prison=20
+Amy Goodman and Juan Gonz=C3=A1lez, Democracy Now!: Two African-American ha=
+lf-brothers have been exonerated of rape and murder after more than 30 year=
+s behind bars in North Carolina. Henry Lee McCollum and Leon Brown were pre=
+viously found guilty in 1984 of the rape and murder of an 11-year-old girl.
+
+TRUTHOUT'S BUZZFLASH DAILY HEADLINES
+
+SEC Inundated by One Million Requests for Corporate Campaign Contribution T=
+ransparency
+http://www.truth-out.org/buzzflash/commentary/sec-inundated-by-one-million-=
+requests-for-corporate-campaign-contribution-disclosures
+Mark Karlin, BuzzFlash at Truthout:  SEC Chair Mary Jo White - who many tho=
+ught would bring sunlight to bear upon corporate involvement in politics - =
+is actually enabling them to keep their political contributions in the dark=
+.
+
+The CIA's Mop-Up Man: LA Times Reporter Cleared Stories With Agency Before =
+Publication
+Read the Article at The Intercept
+https://firstlook.org/theintercept/2014/09/04/former-l-times-reporter-clear=
+ed-stories-cia-publication/
+
+Eugene Robinson | Political Islam Cannot Be Bombed Away
+Read the Article at BuzzFlash=20
+http://www.truth-out.org/buzzflash/commentary/eugene-robinson-political-isl=
+am-cannot-be-bombed-away
+
+Amazon Indian Warriors Beat and Strip Illegal Loggers in Battle for Jungle'=
+s Future
+Read the Article at The International Business Times
+http://www.ibtimes.co.uk/photo-report-amazon-indian-warriors-beat-strip-ill=
+egal-loggers-battle-jungles-future-1464021?utm_medium=3Dsocial
+
+Creating a Future That Values Everyone
+Read the Article at BuzzFlash=20
+http://www.truth-out.org/buzzflash/commentary/creating-a-future-that-values=
+-everyone
+
+Hundreds of Fast-Food Protesters Arrested While Striking Against Low Wages
+Read the Article at The Guardian
+http://www.theguardian.com/world/2014/sep/04/fast-food-protests-dozens-arre=
+sted-low-wages
+
+The Religious Right's "Nice Guy" Who Threw His Wife Under the Bus
+Read the Article at The Daily Beast=20
+http://www.thedailybeast.com/articles/2014/09/05/the-religious-right-s-nice=
+-guy-who-threw-his-wife-under-the-bus.html
+
+Missouri Republicans Are About to Pass One of the Harshest Abortion Laws in=
+ the Country
+Read the Article at Mother Jones
+http://www.motherjones.com/politics/2014/09/missouri-72-hour-waiting-period=
+-abortion-bill-jay-nixon
+
+
+-----------
+Support Truthout with a tax-deductible donation by clicking here: https://m=
+embers.truth-out.org/donate
+
+To ensure you receive our messages please add the following address to your=
+ email address book: messenger@truthout.org
+
+If you are having trouble with this, read our guide: http://truth-out.org/w=
+hitelisting
+
+Thank you!
+
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+
+Click to UNSUBSCRIBE -> http://org2.salsalabs.com/o/6694/p/salsa/supporter/=
+unsubscribe/public/?Email=3Dpodesta@law.georgetown.edu&email_blast_KEY=3D13=
+04868
+Go directly to our home page: http://www.truthout.org
+Click to SUBSCRIBE -> http://org2.salsalabs.com/o/6694/p/salsa/web/common/p=
+ublic/signup?signup_page_KEY=3D2160
+Our Privacy Policy -> http://truth-out.org/privacy
+------=_Part_11371974_1910476892.1409949710497
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+<html dir="ltr">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <!-- TemplateBeginEditable name="content" --><table width="600" cellspacing="15" cellpadding="0" border="0" bgcolor="#FFFFFF" align="center" style="border: 1px solid #000000">
+    <tbody>
+        <tr>
+            <td bgcolor="#FFFFFF">
+            <table width="570" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                    <tr>
+                        <td width="64">
+                        <table width="64" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td><img width="64" height="100" alt="t" src="http://truth-out.org/images/truthout_t_100.gif" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </td>
+                        <td width="40">&#160;</td>
+                        <td width="300">
+                        <table width="300" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    <h2 style="margin: 0 0 0.2em 0;font-size: small;color: #454242 !important;font-family: Arial, Helvetica, sans-serif">Friday, 5 September 2014
+                                    <p></p>
+                                    <img width="236" height="40" alt="t r u t h o u t" src="http://truth-out.org/images/truthout_logo_40.png" /></h2>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </td>
+                        <td width="165" align="right">
+                        <table width="165" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    <h2 style="text-align:right; margin: 0 0 0.5em 0;font-size: x-small;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a style="color: #910000; text-decoration:none" href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=H%2F%2FwHW%2BnJ%2BNSdLx7KCQq1CRheDoyZ26M">View Recent Newsletters</a>
+                                    <p></p>
+                                    </h2>
+                                    <h2 style="text-align:right; margin: 0 0 0.5em 0;font-size: x-small;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a style="color: #910000; text-decoration:none" href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=tlmDwraav3AzpxlhTTmRBSRheDoyZ26M">Tell a friend about Truthout!</a>
+                                    <p></p>
+                                    </h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor="#910000" align="center">
+                                    <h2 style="margin: .5em  .5em; text-align:center; font-size: large;!important;font-family: Arial, Helvetica, sans-serif;"><a style="color: #FFFFFF; text-decoration:none; text-align:center" href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=JJWcIShLaJHCeaBCDv65pSRheDoyZ26M">Donate Today!</a>
+                                    <p></p>
+                                    </h2>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td bgcolor="#FFFFFF">
+                                    <p style="margin: 0;padding: 0;font-size: xx-small;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1">&#160;</p>
+                                    <p style="text-align:right; margin: 0;padding: 0;font-size: 7px;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1">Truthout is a 501(c)3 nonprofit organization; donations are tax deductible.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#FFFFFF">
+            <table width="570" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td>
+                        <table width="180" border="0" align="right" cellspacing="0" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td width="15">&#160;</td>
+                                    <td width="165" bgcolor="#e4e2d7">
+                                    <table width="165" border="0" cellspacing="0" cellpadding="15">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                <h1 style="font-size: x-large;color: #454242 !important;font-family: Arial, Helvetica, sans-serif">BuzzFlash</h1>
+                                                <p style="margin: 0 0 0.1em 0;font-size: 110%; color: #000000 !important;font-family: Arial, Helvetica, sans-serif;"><strong>SEC Inundated by One Million Requests for Corporate Campaign Contribution Transparency           </strong></p>
+                                                <p style="margin: 0;padding: 0;font-size: normal;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.2"><strong>Mark Karlin, BuzzFlash at Truthout: </strong>SEC Chair Mary Jo White - who many thought would bring sunlight to bear upon corporate involvement in politics - is actually enabling them to keep their political contributions in the dark.</p>
+                                                <p style="margin: 0 0 0.1em 0;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=DXsZ%2BMu%2FbAlEAYeZRbbcciRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the BuzzFlash Commentary</strong></a></p>
+                                                <p style="margin: 0;padding: 0;font-size: normal;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.3">&#160;</p>
+                                                <p style="margin: 0 0 0.1em 0;font-size: 110%; color: #000000 !important;font-family: Arial, Helvetica, sans-serif;"><strong>The CIA's Mop-Up Man: LA Times Reporter Cleared Stories With Agency Before Publication</strong></p>
+                                                <p style="margin: 0 0 0.1em 0;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=zBgnlpRk8fbhrxvwe9AH8CRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article at The Intercept</strong></a></p>
+                                                &#160;
+                                                <p style="margin: 0 0 0.1em 0;font-size: 110%; color: #000000 !important;font-family: Arial, Helvetica, sans-serif;"><strong>Eugene Robinson | Political Islam Cannot Be Bombed Away</strong></p>
+                                                <p style="margin: 0 0 0.1em 0;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=ZLhOISLkCBPTJf3Ca5ZcPiRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article at BuzzFlash</strong></a></p>
+                                                &#160;
+                                                <p style="margin: 0 0 0.1em 0;font-size: 110%; color: #000000 !important;font-family: Arial, Helvetica, sans-serif;"><strong>Amazon Indian Warriors Beat and Strip Illegal Loggers in Battle for Jungle's Future</strong></p>
+                                                <p style="margin: 0 0 0.1em 0;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=u96HT3w0CG5FgdWWLIquFiRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article at The International Business Times</strong></a></p>
+                                                &#160;
+                                                <p style="margin: 0 0 0.1em 0;font-size: 110%; color: #000000 !important;font-family: Arial, Helvetica, sans-serif;"><strong>Creating a Future That Values Everyone</strong></p>
+                                                <p style="margin: 0 0 0.1em 0;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=B11mqDvEMfWiV6HRqWmxpSRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article at BuzzFlash</strong></a></p>
+                                                &#160;
+                                                <p style="margin: 0 0 0.1em 0;font-size: 110%; color: #000000 !important;font-family: Arial, Helvetica, sans-serif;"><strong>Hundreds of Fast-Food Protesters Arrested While Striking Against Low Wages</strong></p>
+                                                <p style="margin: 0 0 0.1em 0;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=t8zPsVjBvEg8WV2CHwnyBiRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article at The Guardian</strong></a></p>
+                                                &#160;
+                                                <p style="margin: 0 0 0.1em 0;font-size: 110%; color: #000000 !important;font-family: Arial, Helvetica, sans-serif;"><strong>The Religious Right's "Nice Guy" Who Threw His Wife Under the Bus</strong></p>
+                                                <p style="margin: 0 0 0.1em 0;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=sxHLEx456Krel09I2nykmyRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article at The Daily Beast</strong></a></p>
+                                                &#160;
+                                                <p style="margin: 0 0 0.1em 0;font-size: 110%; color: #000000 !important;font-family: Arial, Helvetica, sans-serif;"><strong>Missouri Republicans Are About to Pass One of the Harshest Abortion Laws in the Country</strong></p>
+                                                <p style="margin: 0 0 0.1em 0;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=KEbv4vzyEw36vvJitoD2NiRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article at Mother Jones</strong></a></p>
+                                                &#160;                   &#160;</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="margin: 0 0 0.2em;font-size: 110%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=U%2FH6TjmawjE0iC2N%2BEZQuCRheDoyZ26M" style="text-decoration: none; color: #570000"><strong>Noam Chomsky | Owl of Minerva's View: ISIS and Our Times</strong></a></p>
+                        <p style="margin: 0;padding: 0;font-size: 100%;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.1"><strong>Noam Chomsky, Truthout:</strong>&#160;Human civilization began by the Tigris and Euphrates rivers. It is perhaps fitting that we have plunged the cradle of civilization into disaster, just as we may have ensured the end of the human civilization by warming our climate to the point of no return.</p>
+                        <p style="margin: .2em 0 1em 2em;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=2EbIjan3z1U5z8scTVl4VSRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article</strong></a>&#160;</p>
+                        <p style="margin: 0 0 0.2em;font-size: 110%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=sPAIgmj%2F%2BuWJNJq5Koq7zCRheDoyZ26M" style="text-decoration: none; color: #570000"><strong>William Rivers Pitt | Within Reach of Your Arm</strong></a></p>
+                        <p style="margin: 0;padding: 0;font-size: 100%;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.1"><strong>William Rivers Pitt, Truthout:</strong>&#160;"All I have, all you have, all we have, is the power to do good and right within reach of our arm. I can't defeat ISIS, or suck the oil out of the Gulf. But I can do the best I can within reach of my arm, one reach at a time."</p>
+                        <p style="margin: .2em 0 1em 2em;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=ebxa%2BoC%2FU%2BsLdZPFIKnNPCRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article</strong></a>&#160;</p>
+                        <p style="margin: 0 0 0.2em;font-size: 110%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=OA1H5VJNo%2FpYi5F%2BGGoP6CRheDoyZ26M" style="text-decoration: none; color: #570000"><strong>Marjorie Cohn | US Slammed for Failure to Fulfill Legal Obligation to Eliminate All Forms of Race Discrimination</strong></a></p>
+                        <p style="margin: 0;padding: 0;font-size: 100%;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.1"><strong>Marjorie Cohn, Truthout:</strong>&#160;A UN Committee has published a scathing denunciation of US failures to honor its treaty commitments to the International Convention on the Elimination of All Forms of Racial Discrimination.</p>
+                        <p style="margin: .2em 0 1em 2em;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=zy6mAZvjwro8YzknyIiOiKdsVJBHu7q7" style="text-decoration: none; color: #910000"><strong>Read the Article</strong></a>&#160;</p>
+                        <p style="margin: 0 0 0.2em;font-size: 110%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=uPzoBzFsFIi01wQdOexZ3SRheDoyZ26M" style="text-decoration: none; color: #570000"><strong>"Illegal Immigration" Is a Policy Used to Exclude and Exploit</strong></a></p>
+                        <p style="margin: 0;padding: 0;font-size: 100%;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.1"><strong>Aviva Chomsky, Truthout:</strong>&#160;The author explores how prejudice and the exploitation of inexpensive labor increasingly shaped US immigration policy in an excerpt from her book, <i>Undocumented: How Immigration Became Illegal.</i></p>
+                        <p style="margin: .2em 0 1em 2em;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=Lz9WyIFCqPvQQL33r%2BqxsiRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Excerpt</strong></a>&#160;</p>
+                        <p style="margin: 0 0 0.2em;font-size: 110%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=6PYZvYaOzEsuMVnO3KP6LiRheDoyZ26M" style="text-decoration: none; color: #570000"><strong>Manufactured Emergency: The Neoliberal Assault on Michigan</strong></a></p>
+                        <p style="margin: 0;padding: 0;font-size: 100%;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.1"><strong>Jane Slaughter, Political Research Associates:</strong>&#160;Those who want to privatize public services and destroy unions have made some successful incursions into the once union-friendly state. Whether Michiganders can mount an effective resistance remains to be seen.</p>
+                        <p style="margin: .2em 0 1em 2em;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=%2BBHYE0IVg1nHkMJEEnhG4adsVJBHu7q7" style="text-decoration: none; color: #910000"><strong>Read the Article</strong></a>&#160;</p>
+                        <p style="margin: 0 0 0.2em;font-size: 110%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=eWmO0%2F4S5FDiynVag9qu6yRheDoyZ26M" style="text-decoration: none; color: #570000"><strong>Dean Baker | Pace of Job Growth Slows Further in August</strong></a></p>
+                        <p style="margin: 0;padding: 0;font-size: 100%;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.1"><strong>Dean Baker, Center for Economic and Policy Research:</strong>&#160;The pace of growth slowed sharply to 142,000 jobs in August, which brings the average rate of job growth over the last three months to 207,000. Employment is now performing far worse than in prior recoveries.</p>
+                        <p style="margin: .2em 0 1em 2em;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=t48BwKXhiDNe%2FpoksFZ0JCRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article</strong></a>&#160;</p>
+                        <p style="margin: 0 0 0.2em;font-size: 110%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=tTotKeSPgbYoPMENlx1SqyRheDoyZ26M" style="text-decoration: none; color: #570000"><strong>Is There Still Hope for Peace in Ukraine?</strong></a></p>
+                        <p style="margin: 0;padding: 0;font-size: 100%;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.1"><strong>Patrick Boylan, Pressenza:</strong>&#160;The Ukrainian government relentlessly goes on bombing residential areas in the eastern regions. The separatists are in a siege; to break it, they have launched a bloody counteroffensive. Yet, in spite of it all, a glimmer of hope for peace has appeared.</p>
+                        <p style="margin: .2em 0 1em 2em;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=O1AC82bptERJbBtKPQm%2FPadsVJBHu7q7" style="text-decoration: none; color: #910000"><strong>Read the Article</strong></a>&#160;</p>
+                        <p style="margin: 0 0 0.2em;font-size: 110%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=6uPS0kiZoC7YTANyOjfBeCRheDoyZ26M" style="text-decoration: none; color: #570000"><strong>The Price of Blackness: From Ferguson to Bed-Stuy</strong></a></p>
+                        <p style="margin: 0;padding: 0;font-size: 100%;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.1"><strong>Darnell L. Moore, The Feminist Wire:</strong>&#160;If we are to ensure the end of state-sanctioned violence against black people, we must be ready to think through and redress the socioeconomic and class underpinnings of anti-blackness and white racial supremacy.</p>
+                        <p style="margin: .2em 0 1em 2em;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=iLfIVOcASOqOmZUUGgDIeSRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article</strong></a>&#160;</p>
+                        <p style="margin: 0 0 0.2em;font-size: 110%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=270qACdLY4OpgkxDds6s4iRheDoyZ26M" style="text-decoration: none; color: #570000"><strong>What "Battlestar Galactica" Can Teach Us About the Militarization of Police</strong></a></p>
+                        <p style="margin: 0;padding: 0;font-size: 100%;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.1"><strong>Christopher Zumski Finke, YES! Magazine:</strong>&#160;"There's a reason you separate the military and the police. One fights the enemy of the state, the other serves and protects the people. When the military becomes both, then the enemies of the state tend to become the people," says the "Battlestar Galactica" character Commander William Adama.</p>
+                        <p style="margin: .2em 0 1em 2em;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=oVbqQqRIutJRvDGszKHGUiRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article</strong></a>&#160;</p>
+                        <p style="margin: 0 0 0.2em;font-size: 110%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=ynXtAEho41gsskyXpPRl3yRheDoyZ26M" style="text-decoration: none; color: #570000"><strong>Global Expansion of Fossil Fuel Transport, Drilling Underway as UN Climate Summit Approaches</strong></a></p>
+                        <p style="margin: 0;padding: 0;font-size: 100%;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.1"><strong>Sharmini Peries, The Real News Network:</strong>&#160;Environmental and humanities scholar and activist Subhankar Banerjee says we shouldn't expect much from global leaders gathering in New York City for the 2014 climate summit - most of their countries work with the fossil fuel industry.</p>
+                        <p style="margin: .2em 0 1em 2em;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=2EbIjan3z1VcM8emikj8OSRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Watch the Video and Read the Transcript</strong></a>&#160;</p>
+                        <p style="margin: 0 0 0.2em;font-size: 110%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=YElgeSjx%2BYGbUaf%2F8kB6f6dsVJBHu7q7" style="text-decoration: none; color: #570000"><strong>If a Senator Can't Report Sexual Harassment Without Backlash, Who Can?</strong></a></p>
+                        <p style="margin: 0;padding: 0;font-size: 100%;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.1"><strong>Crystal Shepeard, Care2:</strong>&#160;Women have to walk a tricky tightrope of not wanting to seem too "sensitive," while at the same time standing up for themselves in the face of discrimination. Sen. Gillibrand's experience shows how difficult it can be for anyone to navigate the workplace without inviting negative consequences.</p>
+                        <p style="margin: .2em 0 1em 2em;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=FuXCVhRM0eQJcX6Dvx5vlyRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Read the Article</strong></a>&#160;</p>
+                        <p style="margin: 0 0 0.2em;font-size: 110%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=gkejxmbAVRjVAmF76HkqLiRheDoyZ26M" style="text-decoration: none; color: #570000"><strong>A Victory Over Justice System's Failure: Wrongly Convicted Brothers Freed After 31 Years in Prison</strong></a></p>
+                        <p style="margin: 0;padding: 0;font-size: 100%;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.1"><strong>Amy Goodman and Juan Gonz&aacute;lez, Democracy Now!:</strong>&#160;Two African-American half-brothers have been exonerated of rape and murder after more than 30 years behind bars in North Carolina. Henry Lee McCollum and Leon Brown were previously found guilty in 1984 of the rape and murder of an 11-year-old girl.</p>
+                        <p style="margin: .2em 0 1em 2em;font-size: 90%;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=KEbv4vzyEw0FSOSBiLEUwSRheDoyZ26M" style="text-decoration: none; color: #910000"><strong>Watch the Video and Read the Transcript</strong></a>&#160;</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#FFFFFF">
+            <table width="570" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td width="400">
+                        <h2 style="margin: 0 0 0.8em 0;font-size: large;color: #454242 !important;font-family: Arial, Helvetica, sans-serif"><a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=8p8JVmhcCcejpyPdpSu7cCRheDoyZ26M" style="color: #910000; text-decoration:none">Support Truthout with a tax-deductible donation&#160;</a>
+                        <p></p>
+                        <p style="margin: 0;padding: 0;font-size: x-small;color: #444 !important;font-family: Arial, Helvetica, sans-serif;line-height: 1.6">Please add  messenger@truthout.org to ensure you receive our messages<br />
+                        Truthout is a proud member of the Newspaper Guild/CWA, Local 36047 <br />
+                        <a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=Zyw59mi4iFTTmW579kHoAKdsVJBHu7q7" style="text-decoration: none; color: #910000">Subscribe</a> | <a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=S0Qd%2FylbU3E0fM6v1pM0%2FSRheDoyZ26M" style="text-decoration: none; color: #910000">Unsubscribe</a><br />
+                        <a href="http://org2.salsalabs.com/dia/track.jsp?v=2&c=NwjpXOsboOL6fNW6%2BOqYSiRheDoyZ26M" style="text-decoration: none; color: #910000">Privacy Policy</a><br />
+                        &#160;</p>
+                        </h2>
+                        </td>
+                        <td width="110"><img src="http://truth-out.org/images/newspaper_guild.jpg" alt="The Newspaper Guild" width="110" height="111" style="display: block" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+        </tr>
+    </tbody>
+</table><!-- TemplateEndEditable -->
+    </body>
+</html><img width=1 height=1 src="http://org2.salsalabs.com/dia/TrackImage?key=2238124726"><diaEmailID='2238124726' thread=3708 />
+------=_Part_11371974_1910476892.1409949710497--

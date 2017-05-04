@@ -11,5 +11,6 @@ Gem::Specification.new do |gem|
   gem.homepage      = "https://github.com/jeremybmerrill/dkimverify"
   gem.files         = `git ls-files`.split($/)
   gem.require_paths = ["."]
-  gem.add_dependency "parslet", "~> 1.6"
+  # gem.add_dependency "parslet", "~> 1.6"
+  gem.add_development_dependency("minitest")  
 end
