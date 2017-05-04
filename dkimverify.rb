@@ -7,8 +7,10 @@ require 'resolv'
 $debuglog = nil #STDERR # nil # alternatively, set this to `STDERR` to log to stdout.
 
 module DkimVerify
+    class DkimVerifyError < StandardError; end
+
     module Mail
-        class MessageFormatError < StandardError; end
+        class MessageFormatError < DkimVerifyError; end
 
         class HeaderHash < Hash
             def get(header_name)
@@ -87,7 +89,7 @@ module DkimVerify
         HASHID_SHA1   = OpenSSL::ASN1::ObjectId.new('sha1')
         HASHID_SHA256 = OpenSSL::ASN1::ObjectId.new('sha256')
 
-        class DkimError < StandardError; end
+        class DkimError < DkimVerifyError; end
         class DkimTempFail < DkimError; end
         class DkimPermFail < DkimError; end
         class InvalidDkimSignature < DkimPermFail; end
